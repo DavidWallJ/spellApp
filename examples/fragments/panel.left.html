@@ -78,7 +78,9 @@
 			<!-- /panel left -->
 
 
-			<script type="text/javascript">
+		<script type="text/javascript">
+
+
 			$('#spin0').on('change', function() {
 
 				localStorage.lvlZeroValue = this.value;
@@ -143,8 +145,6 @@
 				localStorage.lvlTenValue = this.value;
 				$(this).attr('value',this.value);
 			});
-
-
 
 
 
@@ -218,17 +218,58 @@
 				$('#spin9').attr('max',this.value);
 			});
 
+
+
 			$('#spellCountTackMax').click(function() {
 
-				if (typeof localStorage.lvlZeroMaxValue === 'string' && localStorage.lvlZeroMaxValue !== "" && localStorage.lvlZeroMaxValue <= 99 ) {
-					document.getElementById('spin0').value = localStorage.lvlZeroMaxValue;
-					localStorage.lvlZeroValue = localStorage.lvlZeroMaxValue;
-				} else {
-					document.getElementById('spin0').value = 0;
-					document.getElementById('spinSet0').value = 0
-					localStorage.lvlZeroValue = 0;
-					localStorage.lvlZeroMaxValue = 0;
-				}
+
+
+
+				jQuery.fn.onSpinChange = function(counterValueLocation, maxValueLocation){
+
+					return this.each(function(){
+						if (typeof maxValueLocation === 'string' && maxValueLocation !== "" && maxValueLocation <= 99 ) {
+							$(this).attr('value',maxValueLocation);
+							counterValueLocation = maxValueLocation;
+						} else {
+							alert("Please...");
+							$(this).closest('.spellBookSpellSet').next("input").value = 2;
+							counterValueLocation = "0";
+							maxValueLocation = "0";
+						}
+					});
+				};
+
+				$("#spin0").onSpinChange(localStorage.lvlZeroValue,localStorage.lvlZeroMaxValue);
+
+				$("#spin1").onSpinChange(localStorage.lvlOneValue,localStorage.lvlOneMaxValue);
+
+				$("#spin2").onSpinChange(localStorage.lvlTwoValue,localStorage.lvlTwoMaxValue);
+
+				$("#spin3").onSpinChange(localStorage.lvlThreeValue,localStorage.lvlThreeMaxValue);
+
+				$("#spin4").onSpinChange(localStorage.lvlFourValue,localStorage.lvlFourMaxValue);
+
+				$("#spin5").onSpinChange(localStorage.lvlFiveValue,localStorage.lvlFiveMaxValue);
+
+				$("#spin6").onSpinChange(localStorage.lvlSixValue,localStorage.lvlSixMaxValue);
+
+				$("#spin7").onSpinChange(localStorage.lvlSevenValue,localStorage.lvlSevenMaxValue);
+
+				$("#spin8").onSpinChange(localStorage.lvlEightValue,localStorage.lvlEightMaxValue);
+
+				$("#spin9").onSpinChange(localStorage.lvlNineValue,localStorage.lvlNineMaxValue);
+
+
+				// if (typeof localStorage.lvlZeroMaxValue === 'string' && localStorage.lvlZeroMaxValue !== "" && localStorage.lvlZeroMaxValue <= 99 ) {
+				// 	document.getElementById('spin0').value = localStorage.lvlZeroMaxValue;
+				// 	localStorage.lvlZeroValue = localStorage.lvlZeroMaxValue;
+				// } else {
+				// 	document.getElementById('spin0').value = 0;
+				// 	document.getElementById('spinSet0').value = 0;
+				// 	localStorage.lvlZeroValue = 0;
+				// 	localStorage.lvlZeroMaxValue = 0;
+				// }
 
 
 				if (typeof localStorage.lvlOneMaxValue === 'string' && localStorage.lvlOneMaxValue !== "" && localStorage.lvlOneMaxValue <= 99 ) {
